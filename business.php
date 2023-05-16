@@ -2,7 +2,6 @@
 
 require_once("datalayer.php");
 
-
 /*
     Return an array of CustomerDetails objects for everything in the database.
 */
@@ -10,6 +9,7 @@ function getCustomerTable() : array {
     return fetchCustomerData();
    
 }
+
 
 function fetchExpenses(){
     return fetchExpense();

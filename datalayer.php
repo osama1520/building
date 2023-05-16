@@ -39,6 +39,30 @@ function fetchExpense(){
     $result = $query->fetchAll();
     return $result;
 }
+function resetMonthly(){
+    include('mysqldemo.php');
+    $null = '';
+    $nullD = 0;
+    for ($i = 1; $i <= 23; $i++) {
+        $updateQuery = $db -> prepare("UPDATE customers
+        SET paid=:paid,amountpaid=:amountpaid
+        where id=:id;");
+        $updateQuery->bindParam(':id', $i);
+        $updateQuery->bindParam(':paid',  $null);
+        $updateQuery->bindParam(':amountpaid', $nullD);
+        $updateQuery->execute();
+    }
+
+    $sql = "TRUNCATE TABLE expense";
+    $stmt = $db->prepare($sql);
+
+// Execute the SQL query
+    if ($stmt->execute()) {
+        echo "The table has been emptied successfully.";
+    } else {
+        echo "Error emptying table: " . $conn->errorInfo();
+    }
+}
 
 /*
     Get the details of a single customer given their id number.  

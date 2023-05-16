@@ -12,6 +12,9 @@
                     /* table-layout: fixed; */
                     font-weight: bolder;
                 }
+                .hide-display {
+                    display: none;
+                }
 }
         </style>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
@@ -80,8 +83,7 @@
                 <th scope="col">Room Number</th>
                 <th scope="col">Rent</th>
                 <th scope="col">Balance</th>
-                <th scope="col">Paid</th>
-                <th scope="col">Month / year</th>
+                <th scope="col" class='hide-display'>Paid</th>
                 </tr>
             </thead>
             <tbody>
@@ -94,10 +96,17 @@
             $expenses = fetchExpenses();
             //print_r($expenses);
             $expensesTotal = 0;
+            $emailData = '<table style="border-collapse: collapse; border: 1px solid black; width: 100%;">';
+            $emailData .= '<tr>';
+            $emailData .= '<th style="border: 1px solid black; padding: 5px;">Name</th>';
+            $emailData .= '<th style="border: 1px solid black; padding: 5px;">Rent</th>';
+            $emailData .= '<th style="border: 1px solid black; padding: 5px;">Room no</th>';
+            $emailData .= '<th style="border: 1px solid black; padding: 5px;" >Paid</th>';
+            $emailData .= '</tr>';
             foreach($expenses as $e){
                 $expensesTotal += (int)$e[2];
             }
-          
+            
             $total = 0;
             $collected = 0;
                 foreach($data as $obj){
@@ -108,7 +117,7 @@
                         $warning = "text-danger fw-bold";
                         $collected += (int)$obj->amountpaid;
                     }
-                    
+     
                     $total +=(int)$obj->rent;
                     $check = "";
                     $text = "";
@@ -117,17 +126,24 @@
                         $text = "text-white";
                         $collected += (int)$obj->rent;
                     }
+                    $emailData .= "<tr>";
+                    $emailData .= '<td style="border: 1px solid black; padding: 5px;">' . $obj->name . '</td>';
+                    $emailData .= '<td style="border: 1px solid black; padding: 5px;">' . $obj->rent . '</td>';
+                    $emailData .= '<td style="border: 1px solid black; padding: 5px;">' . $obj->roomno . '</td>';
+                    $emailData .= '<td style="border: 1px solid black; padding: 5px;">' . $obj->paid . '</td>';
+                    $emailData .= '</tr>';  
                 echo "<tr class='$check'>   
                 <td ><a class='$text' href='edit.php/?id={$obj->id}'>$obj->name</td>
                 <th class='$text'>{$obj->roomno}</th>
                 <td class='$text'>{$obj->rent}</td>
                 <td class='$text $warning'>{$balance}</td>
-                <td class='$text'>{$obj->paid}</td>
-                <td class='$text'></td>
+                <td class='hide-display $text'>{$obj->paid}</td>
                 </tr>";}
+                $emailData .= '</table>';
+                $emailData .= '<br/><strong>Total </strong>:' .$total .'<br/><strong>Collected: </strong>'.$collected;
+                
                 ?>
             </tbody>
-
             
             <div class="p-1 mb-1 bg-primary text-white mt-5"><?php echo "Total: ".$total;?></div>
             <div class="p-1 mb-1 bg-success text-white"><?php echo "Collected: ".$collected;?></div>

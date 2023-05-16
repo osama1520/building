@@ -25,21 +25,23 @@
                         <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Amount</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col">Date / Time</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
                     require("business.php");
-                    // modal php code
 
                     $expenses = fetchExpenses();
                     $expensesTotal = 0;
                     foreach($expenses as $e){
+                        $array = explode(' ', $e[3], 2);
+                        
+                        //print_r($array);
                         echo "<tr>   
                         <td >{$e[1]}</td>
                         <td >{$e[2]}</td>
-                        <td >.</td>
+                        <td >";echo $array[0] ." ";echo date("g:i a", strtotime($array[1]."UTC"));echo"</td>
                         </tr>";}?>
                         
                 </tbody>
