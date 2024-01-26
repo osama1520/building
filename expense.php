@@ -19,6 +19,13 @@
         </head>
     <body>
     <div class="container"> 
+    <form action="index.php" method="post" style="text-align: center;">
+
+        <button type="submit" style="padding: 10px 12px; font-size: 16px; background-color: green; color: #fff; border: none; border-radius: 5px; cursor: pointer;margin-top: 20px;">
+            Home
+        </button>
+
+        </form>
         <div class="table-responsive mt-5">
                     <table class="table table-striped table-hover" id="table">
                     <thead>
@@ -43,11 +50,13 @@
                         <td >{$e[2]}</td>
                         <td >";echo $array[0] ." ";echo date("g:i a", strtotime($array[1]."UTC"));echo"</td>
                         <td>
+
                         <form action='delete.php' method='POST' onsubmit='return confirm('Are you sure you want to delete this row?');'>
                             <input type='hidden' name='row_id' value='<?php echo $e[0]; ?>'>
-                            <button type='submit'>
-                                <img src='delete.svg' alt='Delete' />
-                            </button>
+                            <button type='submit' style='background-color: #ff0000; color: #ffffff; padding: 5px 10px; border: none; cursor: pointer; border-radius: 5px;'>
+                            Delete
+                        </button>
+                        
                         </form>
                     </td>
                         </tr>";}?>

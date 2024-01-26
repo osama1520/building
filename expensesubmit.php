@@ -8,6 +8,7 @@
             $query->bindParam(':name', $name);
             $query->bindParam(':amount', $amount);
             $query->execute();
+
             header('Location: '.'index.php');
         }   
         ?>

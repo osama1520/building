@@ -158,7 +158,7 @@ body {
         $CustomerDetailsObject->amountpaid = $amountpaid;
         $CustomerDetailsObject->security = $security;
         updateCustomers($CustomerDetailsObject);
-        header('Location: /building/index.php'); 
+        header('Location: /index.php'); 
         
     }
     ?>
