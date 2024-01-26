@@ -7,6 +7,7 @@ class CustomerDetails {
     public $rent;
     public $paid;
     public $amountpaid;
+    public $security;
 }
 // class Expense {
 //     public $name;

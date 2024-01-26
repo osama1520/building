@@ -6,7 +6,6 @@ require 'index.php';
 require './PHPMailer/src/Exception.php';
 require './PHPMailer/src/PHPMailer.php';
 require './PHPMailer/src/SMTP.php';
-
 function sendEmail($emailData) {
     $mail = new PHPMailer(true);
     $mail->isSMTP();
@@ -19,29 +18,23 @@ function sendEmail($emailData) {
     $mail->isHTML(true);
     $mail->setFrom('osama29craft@gmail.com', 'Osama');
     $mail->addAddress('osamasiddique1520@gmail.com');
-    $mail->Subject = 'This is subject';
+    $mail->Subject = 'Rent Summary of ' . date('F');
     $mail->Body = $emailData;
-
     try {
         $mail->send();
         echo 'Email sent successfully';
+        
     } catch (Exception $e) {
         echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
     }
 }
+
 //sendEmail($emailData);
 // Call the function with the email data;
 //sendEmail($emailData);
 if (date('j') == 1) {
     // Call the function with the email data;
     sendEmail($emailData);
+    resetMonthly();
 }
-resetMonthly();
-
 ?>
-
-
-<!-- // if (date('j') == 1) {
-//     // Call the function with the email data;
-//     sendEmail($emailData);
-// } -->

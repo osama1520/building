@@ -9,7 +9,10 @@ function getCustomerTable() : array {
     return fetchCustomerData();
    
 }
-
+function deleteRow($id) {
+    echo $id;
+    return deleteRowData($id);
+}
 
 function fetchExpenses(){
     return fetchExpense();

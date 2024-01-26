@@ -26,6 +26,7 @@ function fetchCustomerData():array {
         $CustomerDetailsObject->rent = $customer[3];
         $CustomerDetailsObject->paid = $customer[4];
         $CustomerDetailsObject->amountpaid = $customer[5];
+        $CustomerDetailsObject->security = $customer[6];
         array_push($outputArray,$CustomerDetailsObject);
     }
     //print_r($outputArray);
@@ -49,7 +50,8 @@ function resetMonthly(){
         where id=:id;");
         $updateQuery->bindParam(':id', $i);
         $updateQuery->bindParam(':paid',  $null);
-        $updateQuery->bindParam(':amountpaid', $nullD);
+        $updateQuery->bindParam(':amountpaid', $null);
+        
         $updateQuery->execute();
     }
 
@@ -79,6 +81,13 @@ function fetchSingleCustomer($cid){
     return null; // just a placeholder
 }
 
+function deleteRowData($id){
+    include('mysqldemo.php');
+    $stmt = $dbh->prepare('DELETE FROM expense WHERE id = :id');
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    return null; // just a placeholder
+}
 /*
     This function will update a customer record.  This function will find the record
     with the given $id number in the database and update all of the other fields to the new
@@ -95,7 +104,7 @@ function updateCustomer($cust){
     }
     else{
         $updateQuery = $db -> prepare("UPDATE customers
-        SET name =:name, roomno =:roomno, rent=:rent, paid=:paid,amountpaid=:amountpaid
+        SET name =:name, roomno =:roomno, rent=:rent, paid=:paid,amountpaid=:amountpaid,security=:security
         where id=:cid;");
         $updateQuery->bindParam(':name', $cust->name);
         $updateQuery->bindParam(':roomno', $cust->roomno);
@@ -103,6 +112,7 @@ function updateCustomer($cust){
         $updateQuery->bindParam(':paid', $cust->paid);
         $updateQuery->bindParam(':cid', $cust->id);
         $updateQuery->bindParam(':amountpaid', $cust->amountpaid);
+        $updateQuery->bindParam(':security', $cust->security);
         $updateQuery->execute();
         //$result = $updateQuery->fetchAll();
         header( "refresh:3;url=index.php" );

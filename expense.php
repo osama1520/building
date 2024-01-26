@@ -42,6 +42,14 @@
                         <td >{$e[1]}</td>
                         <td >{$e[2]}</td>
                         <td >";echo $array[0] ." ";echo date("g:i a", strtotime($array[1]."UTC"));echo"</td>
+                        <td>
+                        <form action='delete.php' method='POST' onsubmit='return confirm('Are you sure you want to delete this row?');'>
+                            <input type='hidden' name='row_id' value='<?php echo $e[0]; ?>'>
+                            <button type='submit'>
+                                <img src='delete.svg' alt='Delete' />
+                            </button>
+                        </form>
+                    </td>
                         </tr>";}?>
                         
                 </tbody>
