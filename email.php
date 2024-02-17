@@ -28,13 +28,21 @@ function sendEmail($emailData) {
         echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
     }
 }
+//resetMonthly();
+
 
 //sendEmail($emailData);
+echo date('j');
 // Call the function with the email data;
 //sendEmail($emailData);
-if (date('j') == 1) {
-    // Call the function with the email data;
-    sendEmail($emailData);
-    resetMonthly();
+while (true) {
+    if (date('j') == 1) {
+        // Call the function with the email data
+        sendEmail($emailData);
+        resetMonthly();
+    }
+   echo "Deep sleep!";
+    sleep(22 * 60 * 60); // Sleep for 24 hours
 }
+
 ?>
