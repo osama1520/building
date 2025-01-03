@@ -352,9 +352,8 @@
     transform: scale(1, 1);
   }
 }
-            
         </style>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>    
         </head>
     <body>
@@ -373,7 +372,7 @@
                         <a href="" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Expenses</a>
                     </li>
                     <li class="nav-item">
-                        <a href="expense.php" class="nav-link" >All Expenses</a>
+                        <a href="/expense.php" class="nav-link" >All Expenses</a>
                     </li>
                 </ul>
             </div>
@@ -479,9 +478,11 @@
                 ?>
             </tbody>
             
-            <div class="p-1 mb-1 bg-primary text-white mt-5"><?php echo "Total: ".$total;?></div>
-            <div class="p-1 mb-1 bg-success text-white"><?php echo "Collected: ".$collected;?></div>
-            <div class="p-1 mb-1 bg-danger text-white"><?php echo "Expenses: ".$expensesTotal;?></div>
+            <div class="p-1 mb-1 bg-primary text-white mt-5 w-50 rounded" ><?php echo "  Total: ".$total;?></div>
+            <div class="p-1 mb-1 bg-warning text-white w-50 rounded"><?php echo "  Collected: ".$collected;?></div>
+            <div class="p-1 mb-1 bg-danger text-white w-50 rounded"><?php echo "  Expenses: ".$expensesTotal;?></div>
+            <div class="p-1 mb-1 bg-success text-white w-50 rounded"><?php echo "  Profit: ". $collected - $expensesTotal;?></div>
+            
             <!-- <button type="button" class="btn btn-outline-success float-end" onclick="window.location.href='CustomerRegister.php';">Add Customer</button> -->
             
             <div class="loader">
